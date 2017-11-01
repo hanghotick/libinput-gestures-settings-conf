@@ -1,0 +1,99 @@
+#Summary of Settings my Custom Settings
+
+#
+
+# NOTE: I am using xorg, so many of these rely upon xdotool.
+
+# If you are using Wayland -- some of these will not work for you!
+
+#
+
+# Summary of Gestures:
+
+# 3 Finger Swipe Up / Down: Show all Windows / Workplaces
+
+# 3 Finger Swipe Right / Left: Browser / Files History Navigation
+
+# (forward / Back a view)
+
+# 4 Finger Swipe Down:
+
+#Show Desktop
+
+# 4 Finger Swipe Left / Right: Switch Workplaces
+
+# 2 Finger Pinch In: Zoom Out (Make View Smaller) -- Browser, Files, Other...
+
+# 2 Finger Pinch Out: Zoom In (Make View Larger) -- Browser, Files, Other...
+
+# 2 Finger Rotate Clockwise: Not Set
+
+# 2 Finger Rotate Counter-Clockwise [anticlockwise]: Not Set
+
+#-----------------------------
+
+# Show all windows
+
+gesture: swipe up 3 xdotool key ctrl+alt+Down
+
+#
+
+# Show all workplaces
+
+gesture: swipe down 3 xdotool key ctrl+alt+Up
+
+#
+
+# Switch workplace to the right
+			
+gesture: swipe right 4 xdotool key ctrl+alt+right
+
+#
+
+# Switch workplace to the left
+
+gesture: swipe left 4 xdotool key ctrl+alt+Left
+
+#Show Desktop
+
+gesture: swipe down 4 xdotool key super+d
+
+
+#
+
+# Browser / Files Forward and Back in History.
+
+# Forward
+
+#gesture: swipe left 3 xdotool key alt+Right
+
+#Back
+
+gesture: swipe right 3 xdotool key alt+Left
+
+#
+
+# Zoom View In (Works in quite a few apps: Browser, Files, photos, etc...)
+
+#pinch: gesture out xdotool key control+shift+plus
+
+#
+
+# Zoom View Out (Works in quite a few apps: Browser, Files, photos, etc...)
+
+#gesture: pinch in xdotool key control+minus
+
+
+#
+
+# Rotate
+
+# I haven't implimented yet with anything, but thinking of what may be
+
+# a good action to link to rotate
+
+#
+
+#gesture: pinch clockwise xdotool key <to_be_determined>
+
+#gesture: pinch anticlockwise xdotool key <to_be_determined>
