@@ -1,0 +1,61 @@
+INSTALLATION
+
+IMPORTANT: You must be a member of the input group to have permission to read the touchpad device:
+
+sudo gpasswd -a $USER input
+After executing the above command, log out of your session completely, and then log back in to assign this group (or just reboot).
+
+NOTE: Arch users can just install libinput-gestures from the AUR. Then skip to the next CONFIGURATION section.
+
+You need python 3.4 or later, python2 is not supported. You also need libinput release 1.0 or later. Install prerequisites:
+
+# E.g. On Arch:
+sudo pacman -S xdotool wmctrl
+
+# E.g. On Debian based systems, e.g. Ubuntu:
+sudo apt-get install xdotool wmctrl
+
+# E.g. On Fedora:
+sudo dnf install xdotool wmctrl
+Debian and Ubuntu users also need to install libinput-tools if that package exists in your release:
+
+sudo apt-get install libinput-tools
+Install this software:
+
+git clone http://github.com/bulletmark/libinput-gestures
+cd libinput-gestures
+sudo ./libinput-gestures-setup install
+CONFIGURATION
+
+Many users will be happy with the default configuration in which case you can just type the following and you are ready to go:
+
+libinput-gestures-setup start
+libinput-gestures-setup autostart
+Otherwise, if you want to create your own custom gestures etc, keep reading ..
+
+The default gestures are in /etc/libinput-gestures.conf. If you want to create your own custom gestures then copy that file to ~/.config/libinput-gestures.conf and edit it. The available gestures are:
+
+swipe up (e.g. map to GNOME/KDE/etc move to next workspace)
+swipe down (e.g map to GNOME/KDE/etc move to prev workspace)
+swipe left (e.g. map to Web browser go forward)
+swipe right (e.g. map to Web browser go back)
+pinch in (e.g. map to GNOME open/close overview)
+pinch out (e.g. map to GNOME open/close overview)
+NOTE: If you don't use "natural" scrolling direction for your touchpad then you may want to swap the default left/right and up/down configurations.
+
+You can choose to specify a specific finger count, typically 3 or 4 fingers. If specified then the command is executed when exactly that number of fingers is used in the gesture. If not specified then the command is executed when that gesture is executed with any number of fingers. Gestures specified with finger count have priority over the same gesture specified without any finger count.
+
+Of course, 2 finger swipes and taps are already interpreted by your DE and apps for scrolling etc.
+
+IMPORTANT: Test the program. Check for reported errors in your custom gestures, missing packages, etc:
+
+# Ensure the program is stopped
+libinput-gestures-setup stop
+
+# Test to print out commands that would be executed:
+libinput-gestures -d
+(<ctrl-c> to stop)
+Confirm that the correct commands are reported for your 3 finger swipe up/down/left/right gestures, and your 2 or 3 finger pinch in/out gestures. Some touchpads can also support 4 finger gestures. If you have problems then follow the TROUBLESHOOTING steps below.
+
+NOTE: For efficiency and because most don't need it, libinput-gestures does not run the configured command under a shell so command substitutions and expansions etc will not be parsed. However, just add your commands in an executable personal script, e.g. ~/bin/libinput-gestures.sh. Run that by hand until you get it working then configure that script name as your command in your libinput-gestures.conf.
+
